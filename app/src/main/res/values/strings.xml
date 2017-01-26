@@ -3,4 +3,7 @@
     <string name="butt1">Begin</string>
     <string name="butt2">How To Play</string>
     <string name="butt3">Credits</string>
+    <string name="backButt">Back</string>
+    <string name="developers">Michael Cha and Bradley Wilcox</string>
+
 </resources>
