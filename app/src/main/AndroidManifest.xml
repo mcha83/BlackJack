@@ -16,7 +16,9 @@
 
         <activity android:name=".credits"/>
         <activity android:name=".howto"/>
+        <activity android:name=".game"/>
 
     </application>
+
 
 </manifest>
