@@ -29,7 +29,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     public void onClick(View v)
     {
         if(v==mbutt1)
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, game.class));
         else if(v==mbutt2)
             startActivity(new Intent(this, howto.class));
         else if(v==mbutt3)

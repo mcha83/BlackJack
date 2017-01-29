@@ -7,6 +7,13 @@
     <string name="backButt">Back</string>
     <string name="developers">Michael Cha and Bradley Wilcox</string>
     <string name="devops">Developers:</string>
+    <string name="draw">Draw</string>
+    <string name="reset">Reset</string>
+    <string name="quit">Quit</string>
+    <string name="player">Player 1</string>
+    <string name="dealer">Dealer</string>
+    <string name="empty"> </string>
+
 
 
 </resources>
