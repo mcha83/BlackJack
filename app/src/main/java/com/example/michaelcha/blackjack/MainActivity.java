@@ -10,7 +10,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     private Button mbutt1, mbutt2, mbutt3;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
