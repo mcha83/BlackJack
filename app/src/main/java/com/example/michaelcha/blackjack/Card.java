@@ -37,4 +37,26 @@ public class Card {
         return this.number;
     }
 
+    public String toString(){
+        String num;
+        switch(this.number){
+            case 1:
+                num = "Ace";
+                break;
+            case 11:
+                num = "Jack";
+                break;
+            case 12:
+                num = "Queen";
+                break;
+            case 13:
+                num = "King";
+                break;
+            default:
+                num = this.number + "";
+                break;
+        }
+
+        return num + " of " + this.suit + " | ";
+    }
 }

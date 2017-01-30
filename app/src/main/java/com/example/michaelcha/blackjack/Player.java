@@ -53,6 +53,15 @@ public class Player {
         return total;
     }
 
+    public String getHandAsString(){
+        String handStr = "";
+        for(Card c: this.hand){
+            handStr += c.toString();
+        }
+
+        return handStr;
+    }
+
 
 
     /**
