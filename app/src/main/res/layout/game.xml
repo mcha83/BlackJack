@@ -3,6 +3,16 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
 
+    <Button
+        android:text="@string/draw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/btnHit" />
+
     <TextView
         android:text="@string/player"
         android:textStyle="bold"
@@ -56,25 +66,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="207dp"
-        android:id="@+id/textView4" />
-
-    <Button
-        android:text="@string/draw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_marginBottom="20dp"
-        android:id="@+id/button" />
-
-    <Button
-        android:text="@string/reset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/button4" />
+        android:id="@+id/tvPlayerHand" />
 
     <Button
         android:text="@string/quit"
@@ -85,6 +77,35 @@
         android:layout_alignEnd="@+id/textView3"
         android:id="@+id/button5" />
 
+    <TextView
+        android:text="@string/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="82dp"
+        android:id="@+id/tvDealerHand"
+        android:layout_above="@+id/tvPlayerHand"
+        android:layout_alignLeft="@+id/tvPlayerHand"
+        android:layout_alignStart="@+id/tvPlayerHand" />
+
+    <Button
+        android:text="@string/reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button4"
+        android:layout_alignBaseline="@+id/btnStand"
+        android:layout_alignBottom="@+id/btnStand"
+        android:layout_toLeftOf="@+id/button5"
+        android:layout_toStartOf="@+id/button5" />
+
+    <Button
+        android:text="@string/stand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnStand"
+        android:layout_alignBaseline="@+id/btnHit"
+        android:layout_alignBottom="@+id/btnHit"
+        android:layout_toRightOf="@+id/btnHit"
+        android:layout_toEndOf="@+id/btnHit" />
 
 
 </RelativeLayout>

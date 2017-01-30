@@ -23,9 +23,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         mbutt3 = (Button) findViewById(R.id.button3);
         mbutt3.setOnClickListener(this);
-
-        //Temporary
-        new GameTest();
     }
 
     public void onClick(View v)
