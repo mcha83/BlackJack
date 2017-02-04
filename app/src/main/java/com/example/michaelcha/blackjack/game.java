@@ -16,7 +16,7 @@ import org.w3c.dom.Text;
 
 public class game extends Activity implements View.OnClickListener {
 
-    Button draw, reset, quit, stand, dollarOne, dollarTen, dollarOneHundred, dollarFiveHundred, deal;
+    Button draw, reset, quit, stand, dollarOne, dollarTen, dollarOneHundred, dollarFiveHundred, deal, playNextHand;
     TextView dealerHand, playerHand, playerTotal, dealerTotal, greeting, purse, bet;
     Blackjack blackjackGame;
 
@@ -33,6 +33,10 @@ public class game extends Activity implements View.OnClickListener {
         stand = (Button) findViewById(R.id.btnStand);
         stand.setOnClickListener(this);
         stand.setVisibility(View.INVISIBLE);
+
+        playNextHand = (Button) findViewById(R.id.btnNextHand);
+        playNextHand.setOnClickListener(this);
+        playNextHand.setVisibility(View.INVISIBLE);
 
         deal = (Button) findViewById(R.id.btnDeal);
         deal.setOnClickListener(this);
@@ -72,8 +76,6 @@ public class game extends Activity implements View.OnClickListener {
         if(v==draw) {
 
             greeting.setText("");
-           // playerHand.setText("");
-          //  dealerHand.setText("");
 
             Card cardDealt = blackjackGame.getDeck().dealCard();
             blackjackGame.getPlayer().hitMe(cardDealt);
@@ -112,7 +114,7 @@ public class game extends Activity implements View.OnClickListener {
                 blackjackGame.getPlayer().rewardForWinningHand();
             }
 
-            setupHand();
+            waitForNextHand();
         }
 
         else if(v == dollarOne){
@@ -132,6 +134,10 @@ public class game extends Activity implements View.OnClickListener {
             deal();
         }
 
+        else if(v == playNextHand){
+            setupHand();
+        }
+
         else if(v==reset)
         {
             startActivity(new Intent(this, game.class));
@@ -143,7 +149,7 @@ public class game extends Activity implements View.OnClickListener {
 
     }
 
-    //add a deal button, make betting buttons invis, make hit/stand vis.... restart after hand
+
     private void placeBet(int betAmount){
 
         blackjackGame.getPlayer().placeBet(betAmount);
@@ -162,6 +168,7 @@ public class game extends Activity implements View.OnClickListener {
 
         draw.setVisibility(View.INVISIBLE);
         stand.setVisibility(View.INVISIBLE);
+        playNextHand.setVisibility(View.INVISIBLE);
 
         dealerTotal.setText("");
         playerTotal.setText("");
@@ -171,6 +178,20 @@ public class game extends Activity implements View.OnClickListener {
         purse.setText("$" + blackjackGame.getPlayer().getMoney());
 
         blackjackGame.nextHand();
+    }
+
+    private void waitForNextHand(){
+        dollarOne.setVisibility(View.INVISIBLE);
+        dollarTen.setVisibility(View.INVISIBLE);
+        dollarOneHundred.setVisibility(View.INVISIBLE);
+        dollarFiveHundred.setVisibility(View.INVISIBLE);
+        deal.setVisibility(View.INVISIBLE);
+        greeting.setVisibility(View.INVISIBLE);
+
+        draw.setVisibility(View.INVISIBLE);
+        stand.setVisibility(View.INVISIBLE);
+
+        playNextHand.setVisibility(View.VISIBLE);
     }
 
     private void deal(){
