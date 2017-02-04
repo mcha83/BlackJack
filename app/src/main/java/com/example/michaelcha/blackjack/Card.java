@@ -57,6 +57,6 @@ public class Card {
                 break;
         }
 
-        return num + " of " + this.suit;
+        return num + " of " + this.suit + " | " ;
     }
 }
