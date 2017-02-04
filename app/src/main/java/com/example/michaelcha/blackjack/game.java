@@ -85,11 +85,7 @@ public class game extends Activity implements View.OnClickListener {
 
             if (blackjackGame.didPlayerBust()) {
                 Toast.makeText(this, "Player Busted - Dealer Wins", Toast.LENGTH_LONG).show();
-                setupHand();
-            }
-            else if (blackjackGame.didDealerBust()) {
-                Toast.makeText(this, "Dealer Busted - Player Wins", Toast.LENGTH_LONG).show();
-                setupHand();
+                waitForNextHand();
             }
 
         }
