@@ -27,6 +27,18 @@ public class Blackjack {
         dealer.hitMe(deck.dealCard());
     }
 
+    public void nextHand(){
+        player.resetForNextHand();
+        dealer.resetForNextHand();
+    }
+
+
+    public void doDealersTurn(){
+        while(dealer.getHandTotal() < 18) {
+            dealer.hitMe(deck.dealCard());
+        }
+    }
+
 
     public Deck getDeck(){
         return this.deck;

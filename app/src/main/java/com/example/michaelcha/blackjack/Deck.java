@@ -52,4 +52,14 @@ public class Deck {
         return dealing;
     }
 
+    /**
+     * Debug purposes, prints to logcat
+     */
+    public void printDeck(){
+        Log.i("BLACKJACK", "Number of cards total: " + this.cards.size());
+        for(int i = 0; i < this.cards.size(); i++){
+            Log.i("BLACKJACK", "Card Position: " + (i+1) + " " + this.cards.get(i).getSuit() + " " + this.cards.get(i).getNumber());
+        }
+    }
+
 }

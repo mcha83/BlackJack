@@ -14,9 +14,17 @@ import java.util.ArrayList;
 
 public class Player {
     private ArrayList<Card> hand;
+    private int money;
+    private int bet;
 
     public Player(){
+        resetForNextHand();
+        this.money = 2000;
+    }
+
+    public void resetForNextHand(){
         this.hand = new ArrayList<>();
+        this.bet = 0;
     }
 
     /**
@@ -53,13 +61,45 @@ public class Player {
         return total;
     }
 
-    public String getHandAsString(){
+    public String getHandAsString(boolean hideFirst){
         String handStr = "";
+        int i = 0;
         for(Card c: this.hand){
-            handStr += c.toString();
+            if(i == 0 && hideFirst == true)
+                handStr += "[Hidden], ";
+            else
+                handStr += c.toString() + ", ";
+
+            i++;
         }
 
-        return handStr;
+        return handStr.substring(0, handStr.length() - 2);
+    }
+
+    public int getMoney(){
+        return this.money;
+    }
+
+    public int getBet(){
+        return this.bet;
+    }
+
+    public void placeBet(int bet){
+        this.bet += bet;
+        this.money -= bet;
+    }
+
+    public void rewardForWinningHand(){
+        this.money += this.bet * 2;
+    }
+
+    /**
+     * Debug purposes, prints to logcat
+     */
+    public void printHand(String debugName){
+        for(Card c : this.hand) {
+            Log.i("BLACKJACK", debugName + ": " + c.getSuit() + " " + c.getNumber());
+        }
     }
 
 }
