@@ -20,12 +20,12 @@ public class Blackjack {
     }
 
     // Start everyone out with two cards
-   /* public void startGame(){
+   public void startGame(){
         player.hitMe(deck.dealCard());
         dealer.hitMe(deck.dealCard());
         player.hitMe(deck.dealCard());
         dealer.hitMe(deck.dealCard());
-    }*/
+    }
 
 
     public Deck getDeck(){

@@ -45,16 +45,16 @@ public class game extends Activity implements View.OnClickListener {
         greeting = (TextView)findViewById(R.id.textView4);
 
         blackjackGame = new Blackjack();
-        greeting.setText("Welcome to BlackJack, Player draw first");
+        greeting.setText("Welcome to BlackJack");
 
         // update this to be after betting
-        //blackjackGame.startGame();
+        blackjackGame.startGame();
 
-        //dealerHand.setText(blackjackGame.getDealer().getHandAsString());
-        //playerHand.setText(blackjackGame.getPlayer().getHandAsString());
+        dealerHand.setText("Dealer dealt " + blackjackGame.getDealer().getHandAsString());
+        playerHand.setText("Player dealt " + blackjackGame.getPlayer().getHandAsString());
 
-        //dealerTotal.setText(blackjackGame.getDealer().getHandTotal() + "");
-        //playerTotal.setText(blackjackGame.getPlayer().getHandTotal() + "");
+        dealerTotal.setText(blackjackGame.getDealer().getHandTotal() + "");
+        playerTotal.setText(blackjackGame.getPlayer().getHandTotal() + "");
     }
 
     public void onClick(View v)
@@ -72,14 +72,8 @@ public class game extends Activity implements View.OnClickListener {
             Card cardDealt = blackjackGame.getDeck().dealCard();
             blackjackGame.getPlayer().hitMe(cardDealt);
 
-            playerHand.setText("Player draws " + playerHand.getText().toString() + cardDealt.toString());
+            playerHand.setText("Player dealt " + playerHand.getText().toString() + cardDealt.toString());
             playerTotal.setText(blackjackGame.getPlayer().getHandTotal() + "");
-
-            Card cardDealt2 = blackjackGame.getDeck().dealCard();
-            blackjackGame.getDealer().hitMe(cardDealt2);
-
-            dealerHand.setText("Dealer draws " + dealerHand.getText().toString() + cardDealt2.toString());
-            dealerTotal.setText(blackjackGame.getDealer().getHandTotal() + "");
 
             if (blackjackGame.didPlayerBust())
                 Toast.makeText(this, "Player Busted - Dealer Wins", Toast.LENGTH_LONG).show();
