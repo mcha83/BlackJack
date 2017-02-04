@@ -14,9 +14,17 @@ import java.util.ArrayList;
 
 public class Player {
     private ArrayList<Card> hand;
+    private int money;
+    private int bet;
 
     public Player(){
+        resetForNextHand();
+        this.money = 2000;
+    }
+
+    public void resetForNextHand(){
         this.hand = new ArrayList<>();
+        this.bet = 0;
     }
 
     /**
@@ -60,6 +68,24 @@ public class Player {
         }
 
         return handStr;
+    }
+
+    public int getMoney(){
+        return this.money;
+    }
+
+    public int getBet(){
+        return this.bet;
+    }
+
+    public void placeBet(int bet){
+        this.bet += bet;
+        this.money -= bet;
+    }
+
+    public void rewardForWinningHand(){
+        this.money += this.bet * 2;
+        Log.i("WTF", this.money + " " + this.bet);
     }
 
 }
