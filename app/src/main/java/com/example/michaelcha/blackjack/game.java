@@ -17,8 +17,9 @@ import org.w3c.dom.Text;
 public class game extends Activity implements View.OnClickListener {
 
     Button draw, reset, quit, stand;
-    TextView dealerHand, playerHand, playerTotal, dealerTotal;
+    TextView dealerHand, playerHand, playerTotal, dealerTotal, greeting;
     Blackjack blackjackGame;
+    Integer x = 52;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,45 +42,75 @@ public class game extends Activity implements View.OnClickListener {
         playerHand = (TextView)findViewById(R.id.tvPlayerHand);
         playerTotal = (TextView)findViewById(R.id.textView2);
         dealerTotal = (TextView)findViewById(R.id.textView3);
+        greeting = (TextView)findViewById(R.id.textView4);
 
         blackjackGame = new Blackjack();
+        greeting.setText("Welcome to BlackJack, Player draw first");
 
         // update this to be after betting
-        blackjackGame.startGame();
-        dealerHand.setText(blackjackGame.getDealer().getHandAsString());
-        playerHand.setText(blackjackGame.getPlayer().getHandAsString());
+        //blackjackGame.startGame();
 
-        dealerTotal.setText(blackjackGame.getDealer().getHandTotal() + "");
-        playerTotal.setText(blackjackGame.getPlayer().getHandTotal() + "");
+        //dealerHand.setText(blackjackGame.getDealer().getHandAsString());
+        //playerHand.setText(blackjackGame.getPlayer().getHandAsString());
+
+        //dealerTotal.setText(blackjackGame.getDealer().getHandTotal() + "");
+        //playerTotal.setText(blackjackGame.getPlayer().getHandTotal() + "");
     }
 
     public void onClick(View v)
     {
 
-        if(v==draw)
-        {
+        if(v==draw) {
+
+            greeting.setText("");
+            playerHand.setText("");
+            dealerHand.setText("");
+
+            /*if(blackjackGame.getPlayer().getHandTotal() == 21)
+                Toast.makeText(this, "Player Wins", Toast.LENGTH_SHORT).show();*/
+
             Card cardDealt = blackjackGame.getDeck().dealCard();
             blackjackGame.getPlayer().hitMe(cardDealt);
 
-            playerHand.setText(playerHand.getText().toString() + cardDealt.toString());
+            playerHand.setText("Player draws " + playerHand.getText().toString() + cardDealt.toString());
             playerTotal.setText(blackjackGame.getPlayer().getHandTotal() + "");
 
-            if(blackjackGame.didPlayerBust())
-                Toast.makeText(this, "Player Busted - Dealer Wins", Toast.LENGTH_SHORT).show();
-        }
-        else if(v == stand)
-        {
-            blackjackGame.doDealersTurn();
-            dealerHand.setText(blackjackGame.getDealer().getHandAsString());
+            Card cardDealt2 = blackjackGame.getDeck().dealCard();
+            blackjackGame.getDealer().hitMe(cardDealt2);
+
+            dealerHand.setText("Dealer draws " + dealerHand.getText().toString() + cardDealt2.toString());
             dealerTotal.setText(blackjackGame.getDealer().getHandTotal() + "");
 
-            if(blackjackGame.didDealerBust())
-                Toast.makeText(this, "Dealer Busted - Player Wins", Toast.LENGTH_SHORT).show();
-            else if(blackjackGame.getDealer().getHandTotal() > blackjackGame.getPlayer().getHandTotal())
-                Toast.makeText(this, "Dealer Wins", Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(this, "Player Wins", Toast.LENGTH_SHORT).show();
+            if (blackjackGame.didPlayerBust())
+                Toast.makeText(this, "Player Busted - Dealer Wins", Toast.LENGTH_LONG).show();
+            else if (blackjackGame.didDealerBust())
+                Toast.makeText(this, "Dealer Busted - Player Wins", Toast.LENGTH_LONG).show();
+
         }
+
+        else if(v == stand)
+        {
+            playerHand.setText("");
+            dealerHand.setText("");
+
+            Card cardDealt3 = blackjackGame.getDeck().dealCard();
+            blackjackGame.getDealer().hitMe(cardDealt3);
+
+            dealerHand.setText("Dealer draws " + dealerHand.getText().toString() + cardDealt3.toString());
+            dealerTotal.setText(blackjackGame.getDealer().getHandTotal() + "");
+
+
+            if(blackjackGame.didDealerBust())
+                Toast.makeText(this, "Dealer Busted - Player Wins", Toast.LENGTH_LONG).show();
+            else if(blackjackGame.didPlayerBust())
+                Toast.makeText(this, "Player Busted - Dealer Wins", Toast.LENGTH_LONG).show();
+            else {
+                dealerHand.setText("");
+                greeting.setText("Player turn");
+
+            }
+        }
+
         else if(v==reset)
         {
             startActivity(new Intent(this, game.class));
