@@ -3,16 +3,6 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
 
-    <Button
-        android:text="@string/draw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_marginBottom="20dp"
-        android:id="@+id/btnHit" />
-
     <TextView
         android:text="@string/player"
         android:textStyle="bold"
@@ -51,16 +41,6 @@
 
     <TextView
         android:text="@string/empty"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView" />
-
-    <TextView
-        android:text="@string/empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -70,42 +50,76 @@
 
     <Button
         android:text="@string/quit"
-        android:layout_width="wrap_content"
+        android:layout_width="85dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/button4"
-        android:layout_alignRight="@+id/textView3"
-        android:layout_alignEnd="@+id/textView3"
+        android:layout_alignBottom="@+id/btnStand"
+        android:layout_toRightOf="@+id/button4"
+        android:layout_marginLeft="15dp"
         android:id="@+id/button5" />
+
+
+    <TextView
+        android:text="@string/empty"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <Button
+        android:text="@string/draw"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/btnHit"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="@string/empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="82dp"
+        android:layout_marginBottom="79dp"
         android:id="@+id/tvDealerHand"
         android:layout_above="@+id/tvPlayerHand"
         android:layout_alignLeft="@+id/tvPlayerHand"
         android:layout_alignStart="@+id/tvPlayerHand" />
 
     <Button
-        android:text="@string/reset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button4"
-        android:layout_alignBaseline="@+id/btnStand"
-        android:layout_alignBottom="@+id/btnStand"
-        android:layout_toLeftOf="@+id/button5"
-        android:layout_toStartOf="@+id/button5" />
-
-    <Button
         android:text="@string/stand"
-        android:layout_width="wrap_content"
+        android:layout_width="85dp"
         android:layout_height="wrap_content"
         android:id="@+id/btnStand"
+        android:layout_marginRight="10dp"
         android:layout_alignBaseline="@+id/btnHit"
         android:layout_alignBottom="@+id/btnHit"
         android:layout_toRightOf="@+id/btnHit"
         android:layout_toEndOf="@+id/btnHit" />
+
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:id="@+id/textView4" />
+
+    <Button
+        android:text="@string/reset"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button4"
+        android:layout_alignBaseline="@+id/btnStand"
+        android:layout_alignBottom="@+id/btnStand"
+        android:layout_toRightOf="@+id/btnStand"
+         />
 
 
 </RelativeLayout>

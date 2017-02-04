@@ -62,14 +62,4 @@ public class Player {
         return handStr;
     }
 
-
-
-    /**
-     * Debug purposes, prints to logcat
-     */
-    public void printHand(String debugName){
-        for(Card c : this.hand) {
-            Log.i("BLACKJACK", debugName + ": " + c.getSuit() + " " + c.getNumber());
-        }
-    }
 }
