@@ -72,16 +72,13 @@ public class game extends Activity implements View.OnClickListener {
         if(v==draw) {
 
             greeting.setText("");
-            playerHand.setText("");
-            dealerHand.setText("");
-
-            /*if(blackjackGame.getPlayer().getHandTotal() == 21)
-                Toast.makeText(this, "Player Wins", Toast.LENGTH_SHORT).show();*/
+           // playerHand.setText("");
+          //  dealerHand.setText("");
 
             Card cardDealt = blackjackGame.getDeck().dealCard();
             blackjackGame.getPlayer().hitMe(cardDealt);
 
-            playerHand.setText("Player dealt " + playerHand.getText().toString() + cardDealt.toString());
+            playerHand.setText("Player's hand: \n" + blackjackGame.getPlayer().getHandAsString(false));
             playerTotal.setText(blackjackGame.getPlayer().getHandTotal() + "");
 
             if (blackjackGame.didPlayerBust()) {
@@ -97,11 +94,9 @@ public class game extends Activity implements View.OnClickListener {
 
         else if(v == stand)
         {
-            playerHand.setText("");
-            dealerHand.setText("");
 
             blackjackGame.doDealersTurn();
-            dealerHand.setText("Dealer draws " + dealerHand.getText().toString());
+            dealerHand.setText("Dealer's hand: \n" + blackjackGame.getDealer().getHandAsString(false));
             dealerTotal.setText(blackjackGame.getDealer().getHandTotal() + "");
 
             if(blackjackGame.didDealerBust()) {
@@ -197,10 +192,10 @@ public class game extends Activity implements View.OnClickListener {
 
         blackjackGame.startGame();
 
-        dealerHand.setText("Dealer dealt " + blackjackGame.getDealer().getHandAsString());
-        playerHand.setText("Player dealt " + blackjackGame.getPlayer().getHandAsString());
+        dealerHand.setText("Dealer's hand: " + blackjackGame.getDealer().getHandAsString(true));
+        playerHand.setText("Player's hand: " + blackjackGame.getPlayer().getHandAsString(false));
 
-        dealerTotal.setText(blackjackGame.getDealer().getHandTotal() + "");
+        dealerTotal.setText("?");
         playerTotal.setText(blackjackGame.getPlayer().getHandTotal() + "");
     }
 

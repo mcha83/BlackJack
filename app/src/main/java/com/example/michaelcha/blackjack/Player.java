@@ -61,13 +61,19 @@ public class Player {
         return total;
     }
 
-    public String getHandAsString(){
+    public String getHandAsString(boolean hideFirst){
         String handStr = "";
+        int i = 0;
         for(Card c: this.hand){
-            handStr += c.toString();
+            if(i == 0 && hideFirst == true)
+                handStr += "[Hidden], ";
+            else
+                handStr += c.toString() + ", ";
+
+            i++;
         }
 
-        return handStr;
+        return handStr.substring(0, handStr.length() - 2);
     }
 
     public int getMoney(){
