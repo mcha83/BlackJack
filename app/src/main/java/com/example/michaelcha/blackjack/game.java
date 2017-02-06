@@ -91,7 +91,7 @@ public class game extends Activity implements View.OnClickListener {
         else if(v == stand)
         {
 
-            blackjackGame.doDealersTurn();
+            blackjackGame.doDealersTurn(blackjackGame.getDealer().getHandTotal());
             dealerHand.setText("Dealer's hand: \n" + blackjackGame.getDealer().getHandAsString(false));
             dealerTotal.setText(blackjackGame.getDealer().getHandTotal() + "");
 
