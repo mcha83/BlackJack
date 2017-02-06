@@ -10,9 +10,7 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
-/**
- * Created by MichaelCha on 1/27/2017.
- */
+
 
 public class game extends Activity implements View.OnClickListener {
 

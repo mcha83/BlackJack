@@ -14,7 +14,10 @@
     <string name="player">Player 1</string>
     <string name="dealer">Dealer</string>
     <string name="empty"> </string>
-
-
+    <string name="object">Object of the Game\nEach participant attempts to beat the dealer
+        by getting a count as close to 21 as possible, without going over 21.\n\nCard Values/Scoring\n
+    It is up to each individual player if an ace is worth 1 or 11. Face cards are 10 and any other card is its pip value.\n\n
+    Betting\nBefore the deal begins, each player places a bet, in chips, in front of him in the designated area
+        Minimum and maximum limits are established on the betting, and the general limits are from $1 to $500.</string>
 
 </resources>
