@@ -1,7 +1,13 @@
 package com.example.michaelcha.blackjack;
 
+import android.content.Context;
 import android.util.Log;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -12,10 +18,14 @@ import java.util.ArrayList;
  *
  */
 
-public class Player {
+public class Player implements Serializable {
+    public static final String PLAYER_DATA = "player.txt";
+    public static final String DEALER_DATA = "dealer.txt";
+
     private ArrayList<Card> hand;
     private int money;
     private int bet;
+    private boolean isHandOver;
 
     public Player(){
         resetForNextHand();
@@ -25,6 +35,7 @@ public class Player {
     public void resetForNextHand(){
         this.hand = new ArrayList<>();
         this.bet = 0;
+        this.isHandOver = false;
     }
 
     /**
@@ -89,8 +100,47 @@ public class Player {
         this.money -= bet;
     }
 
+    public void setHandOver(boolean isOver){
+        this.isHandOver = isOver;
+    }
+
+    public boolean getHandOver(){
+        return this.isHandOver;
+    }
+
     public void rewardForWinningHand(){
         this.money += this.bet * 2;
+    }
+
+    // Save serializable data to file
+    public void Save(Context context, boolean isDealer){
+        try {
+            FileOutputStream fos = context.openFileOutput(isDealer ? DEALER_DATA : PLAYER_DATA, Context.MODE_PRIVATE);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(this);
+            oos.flush();
+            oos.close();
+        } catch (Exception ex) {
+            Log.v("Err Saving Player Data", ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+    // load data from file, or return new instance
+    public static Player loadPlayer(Context context, boolean isDealer){
+        try
+        {
+            FileInputStream fis = context.openFileInput(isDealer ? DEALER_DATA : PLAYER_DATA);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Object o = ois.readObject();
+
+            return (Player)o;
+        }
+
+        catch(Exception ex)
+        {
+            return new Player();
+        }
     }
 
     /**

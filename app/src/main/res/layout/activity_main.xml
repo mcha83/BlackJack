@@ -20,6 +20,15 @@
         android:id="@+id/imageView1" />
 
     <Button
+        android:text="Continue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnContinue"
+        android:layout_above="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
         android:text="@string/butt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

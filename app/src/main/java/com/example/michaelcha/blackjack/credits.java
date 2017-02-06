@@ -7,7 +7,11 @@ import android.view.View;
 import android.widget.Button;
 
 /**
- * Created by MichaelCha on 1/26/2017.
+ *
+ * Bradley Wilcox / Michael Cha
+ * CSCI 4020
+ * Assignment 1
+ *
  */
 
 public class credits extends Activity implements View.OnClickListener {

@@ -1,5 +1,7 @@
 package com.example.michaelcha.blackjack;
 
+import java.io.Serializable;
+
 /**
  *
  * Bradley Wilcox / Michael Cha
@@ -8,7 +10,7 @@ package com.example.michaelcha.blackjack;
  *
  */
 
-public class Card {
+public class Card implements Serializable{
 
     public enum Suit {
         Clubs,

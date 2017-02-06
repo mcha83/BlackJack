@@ -1,17 +1,36 @@
 package com.example.michaelcha.blackjack;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+
 /**
- * Created by MichaelCha on 1/27/2017.
+ *
+ * Bradley Wilcox / Michael Cha
+ * CSCI 4020
+ * Assignment 1
+ *
  */
 
 public class game extends Activity implements View.OnClickListener {
@@ -19,10 +38,12 @@ public class game extends Activity implements View.OnClickListener {
     Button draw, reset, quit, stand, dollarOne, dollarTen, dollarOneHundred, dollarFiveHundred, deal, playNextHand;
     TextView dealerHand, playerHand, playerTotal, dealerTotal, greeting, purse, bet;
     Blackjack blackjackGame;
+    boolean saveOnPause = true;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
 
@@ -64,10 +85,28 @@ public class game extends Activity implements View.OnClickListener {
         purse = (TextView) findViewById(R.id.tvPurse);
         bet = (TextView) findViewById(R.id.tvBet);
 
-        blackjackGame = new Blackjack();
+        blackjackGame = new Blackjack(this);
         greeting.setText("Welcome to BlackJack, Place your bet");
         purse.setText("$" + blackjackGame.getPlayer().getMoney());
 
+        // Setup display state for continued games
+
+        // cards haven't been dealt
+        if(blackjackGame.getPlayer().getHandTotal() == 0) {
+            setDisplayForBet();
+
+        // Hand is over
+        }else if(blackjackGame.getDealer().getHandOver()){
+            setDisplayForDeal();
+            setDisplayForBet();
+            setDisplayForStand();
+            waitForNextHand();
+
+        // Hand in progress
+        }else{
+            setDisplayForDeal();
+            setDisplayForBet();
+        }
     }
 
     public void onClick(View v)
@@ -80,7 +119,7 @@ public class game extends Activity implements View.OnClickListener {
             Card cardDealt = blackjackGame.getDeck().dealCard();
             blackjackGame.getPlayer().hitMe(cardDealt);
 
-            playerHand.setText("Player's hand: \n" + blackjackGame.getPlayer().getHandAsString(false));
+            playerHand.setText("Player's hand: " + blackjackGame.getPlayer().getHandAsString(false));
             playerTotal.setText(blackjackGame.getPlayer().getHandTotal() + "");
 
             if (blackjackGame.didPlayerBust()) {
@@ -94,8 +133,7 @@ public class game extends Activity implements View.OnClickListener {
         {
 
             blackjackGame.doDealersTurn();
-            dealerHand.setText("Dealer's hand: \n" + blackjackGame.getDealer().getHandAsString(false));
-            dealerTotal.setText(blackjackGame.getDealer().getHandTotal() + "");
+            setDisplayForStand();
 
             if(blackjackGame.didDealerBust()) {
                 Toast.makeText(this, "Dealer Busted - Player Wins", Toast.LENGTH_LONG).show();
@@ -136,6 +174,11 @@ public class game extends Activity implements View.OnClickListener {
 
         else if(v==reset)
         {
+            saveOnPause = false;
+            deleteFile(Player.PLAYER_DATA);
+            deleteFile(Player.DEALER_DATA);
+            deleteFile(Deck.DECK_DATA);
+
             startActivity(new Intent(this, game.class));
         }
         else if(v==quit)
@@ -147,11 +190,13 @@ public class game extends Activity implements View.OnClickListener {
 
 
     private void placeBet(int betAmount){
-
         blackjackGame.getPlayer().placeBet(betAmount);
+        setDisplayForBet();
+    }
+
+    private void setDisplayForBet(){
         purse.setText("$" + blackjackGame.getPlayer().getMoney());
         bet.setText("Bet: $" + blackjackGame.getPlayer().getBet());
-
     }
 
     private void setupHand(){
@@ -197,6 +242,12 @@ public class game extends Activity implements View.OnClickListener {
             return;
         }
 
+        blackjackGame.startGame();
+
+        setDisplayForDeal();
+    }
+
+    private void setDisplayForDeal(){
         dollarOne.setVisibility(View.INVISIBLE);
         dollarTen.setVisibility(View.INVISIBLE);
         dollarOneHundred.setVisibility(View.INVISIBLE);
@@ -207,8 +258,6 @@ public class game extends Activity implements View.OnClickListener {
         draw.setVisibility(View.VISIBLE);
         stand.setVisibility(View.VISIBLE);
 
-        blackjackGame.startGame();
-
         dealerHand.setText("Dealer's hand: " + blackjackGame.getDealer().getHandAsString(true));
         playerHand.setText("Player's hand: " + blackjackGame.getPlayer().getHandAsString(false));
 
@@ -216,11 +265,22 @@ public class game extends Activity implements View.OnClickListener {
         playerTotal.setText(blackjackGame.getPlayer().getHandTotal() + "");
     }
 
+    private void setDisplayForStand(){
+        dealerHand.setText("Dealer's hand: " + blackjackGame.getDealer().getHandAsString(false));
+        dealerTotal.setText(blackjackGame.getDealer().getHandTotal() + "");
+    }
 
     @Override
     protected void onPause()
     {
         super.onPause();
+
+        if(saveOnPause) {
+            blackjackGame.getPlayer().Save(this, false);
+            blackjackGame.getDealer().Save(this, true);
+            blackjackGame.getDeck().Save(this);
+        }
+
     }
     @Override
     protected void onDestroy()
