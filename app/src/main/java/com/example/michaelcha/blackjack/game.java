@@ -132,7 +132,7 @@ public class game extends Activity implements View.OnClickListener {
         else if(v == stand)
         {
 
-            blackjackGame.doDealersTurn();
+            blackjackGame.doDealersTurn(blackjackGame.getPlayer().getHandTotal());
             setDisplayForStand();
 
             if(blackjackGame.didDealerBust()) {
@@ -143,6 +143,9 @@ public class game extends Activity implements View.OnClickListener {
                 Toast.makeText(this, "Player Busted - Dealer Wins", Toast.LENGTH_LONG).show();
             }else if(blackjackGame.getDealer().getHandTotal() > blackjackGame.getPlayer().getHandTotal()){
                 Toast.makeText(this, "Dealer Wins", Toast.LENGTH_LONG).show();
+            }else if(blackjackGame.getDealer().getHandTotal() == blackjackGame.getPlayer().getHandTotal()) {
+                Toast.makeText(this, "Push (tie)", Toast.LENGTH_LONG).show();
+                blackjackGame.getPlayer().refund();
             }else{
                 Toast.makeText(this, "Player Wins", Toast.LENGTH_LONG).show();
                 blackjackGame.getPlayer().rewardForWinningHand();

@@ -59,6 +59,10 @@ public class Deck implements Serializable{
         return dealing;
     }
 
+    public int getRemainingCardCount(){
+        return this.cards.size();
+    }
+
     // Save serializable data to file
     public void Save(Context context){
         try {

@@ -43,11 +43,13 @@ public class Blackjack {
     public void nextHand(){
         player.resetForNextHand();
         dealer.resetForNextHand();
+        if(deck.getRemainingCardCount() < 15)
+            deck = new Deck(1);
     }
 
 
-    public void doDealersTurn(){
-        while(dealer.getHandTotal() < 18) {
+    public void doDealersTurn(int playerTotal){
+        while(dealer.getHandTotal() < 18 && dealer.getHandTotal() < playerTotal) {
             dealer.hitMe(deck.dealCard());
         }
 

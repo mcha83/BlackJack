@@ -112,6 +112,10 @@ public class Player implements Serializable {
         this.money += this.bet * 2;
     }
 
+    public void refund(){
+        this.money += this.bet;
+    }
+
     // Save serializable data to file
     public void Save(Context context, boolean isDealer){
         try {
