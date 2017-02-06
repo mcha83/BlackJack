@@ -1,5 +1,12 @@
 package com.example.michaelcha.blackjack;
 
+import android.content.Context;
+import android.util.Log;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+
 /**
  *
  * Bradley Wilcox / Michael Cha
@@ -19,6 +26,12 @@ public class Blackjack {
         player = new Player();
     }
 
+    public Blackjack(Context context){
+        deck = Deck.loadDeck(context);
+        dealer = Player.loadPlayer(context, true);
+        player = Player.loadPlayer(context, false);
+    }
+
     // Start everyone out with two cards
    public void startGame(){
         player.hitMe(deck.dealCard());
@@ -30,13 +43,17 @@ public class Blackjack {
     public void nextHand(){
         player.resetForNextHand();
         dealer.resetForNextHand();
+        if(deck.getRemainingCardCount() < 15)
+            deck = new Deck(1);
     }
 
 
-    public void doDealersTurn(){
-        while(dealer.getHandTotal() < 18) {
+    public void doDealersTurn(int playerTotal){
+        while(dealer.getHandTotal() < 18 && dealer.getHandTotal() < playerTotal) {
             dealer.hitMe(deck.dealCard());
         }
+
+        dealer.setHandOver(true);
     }
 
 
@@ -59,4 +76,6 @@ public class Blackjack {
     public Player getDealer(){
         return this.dealer;
     }
+
+
 }
