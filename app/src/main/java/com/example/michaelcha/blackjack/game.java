@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +16,6 @@ public class game extends Activity implements View.OnClickListener {
 
     Button draw, reset, quit, stand, dollarOne, dollarTen, dollarOneHundred, dollarFiveHundred, deal, playNextHand;
     TextView dealerHand, playerHand, playerTotal, dealerTotal, greeting, purse, bet;
-    ImageView ply1, ply2, ply3, ply4, ply5, dlr1, dlr2, dlr3, dlr4, dlr5;
     Blackjack blackjackGame;
 
 

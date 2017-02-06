@@ -6,7 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-
+/**
+ *
+ * Bradley Wilcox / Michael Cha
+ * CSCI 4020
+ * Assignment 1
+ *
+ */
 
 public class howto extends Activity implements View.OnClickListener {
 
