@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gametable">
 
 
     <TextView
@@ -29,25 +31,6 @@
         android:layout_marginEnd="13dp"
         android:id="@+id/textView" />
 
-    <TextView
-        android:text="@string/empty"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView6"
-        android:layout_alignLeft="@+id/textView6"
-        android:layout_alignStart="@+id/textView6"
-        android:layout_marginTop="17dp"
-        android:id="@+id/textView2" />
-
-
-    <TextView
-        android:text="@string/empty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="207dp"
-        android:id="@+id/tvPlayerHand" />
 
     <Button
         android:text="@string/quit"
@@ -80,16 +63,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="@string/empty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="79dp"
-        android:id="@+id/tvDealerHand"
-        android:layout_above="@+id/tvPlayerHand"
-        android:layout_alignLeft="@+id/tvPlayerHand"
-        android:layout_alignStart="@+id/tvPlayerHand" />
 
     <Button
         android:text="@string/stand"
@@ -193,6 +166,47 @@
         android:layout_centerHorizontal="true"
         android:layout_above="@id/btnStand"
         android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:text="@string/empty"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDealerHand"
+        android:layout_below="@+id/tvBet"
+        android:layout_alignRight="@+id/textView6"
+        android:layout_alignEnd="@+id/textView6"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        android:text="@string/empty"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_alignTop="@+id/btnDeal"
+        android:layout_alignLeft="@+id/tvDealerHand"
+        android:layout_alignStart="@+id/tvDealerHand" />
+
+    <TextView
+        android:text="@string/empty"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvPlayerHand"
+        android:layout_alignBaseline="@+id/tvDealerHand"
+        android:layout_alignBottom="@+id/tvDealerHand"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignTop="@+id/tvDealerHand"
+        android:layout_alignLeft="@+id/btnMoneyOne"
+        android:layout_alignStart="@+id/btnMoneyOne"
+        android:layout_marginTop="30dp">
+
+
+
+    </FrameLayout>
 
 
 </RelativeLayout>
