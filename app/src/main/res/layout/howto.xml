@@ -26,14 +26,15 @@
         android:id="@+id/htView" />
 
     <TextView
-        android:text="TextView"
+        android:text="@string/object"
+        android:textSize="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:id="@+id/htView2"
         android:layout_below="@+id/htView"
         android:layout_alignLeft="@+id/htView"
-        android:layout_alignStart="@+id/htView"
-        android:layout_marginTop="38dp"
-        android:id="@+id/htView2" />
+        android:layout_alignStart="@+id/htView" />
 
 
 </RelativeLayout>
