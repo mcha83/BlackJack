@@ -48,13 +48,13 @@ public class Blackjack {
     }
 
 
-    public void doDealersTurn(int playerTotal){
+    /*public void doDealersTurn(int playerTotal){
         while(dealer.getHandTotal() < 18 && dealer.getHandTotal() < playerTotal) {
             dealer.hitMe(deck.dealCard());
         }
 
         dealer.setHandOver(true);
-    }
+    }*/
 
 
     public Deck getDeck(){
