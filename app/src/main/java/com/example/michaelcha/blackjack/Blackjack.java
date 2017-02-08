@@ -33,12 +33,12 @@ public class Blackjack {
     }
 
     // Start everyone out with two cards
-   public void startGame(){
+   /*public void startGame(){
         player.hitMe(deck.dealCard());
         dealer.hitMe(deck.dealCard());
         player.hitMe(deck.dealCard());
         dealer.hitMe(deck.dealCard());
-    }
+    }*/
 
     public void nextHand(){
         player.resetForNextHand();
@@ -48,13 +48,13 @@ public class Blackjack {
     }
 
 
-    public void doDealersTurn(int playerTotal){
+    /*public void doDealersTurn(int playerTotal){
         while(dealer.getHandTotal() < 18 && dealer.getHandTotal() < playerTotal) {
             dealer.hitMe(deck.dealCard());
         }
 
         dealer.setHandOver(true);
-    }
+    }*/
 
 
     public Deck getDeck(){
