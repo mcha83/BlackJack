@@ -14,20 +14,6 @@
         android:id="@+id/htbutton" />
 
     <TextView
-        android:text="@string/butt2"
-        android:textStyle="bold"
-        android:textSize="70px"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="22dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="20dp"
-        android:id="@+id/htView" />
-
-    <TextView
         android:text="@string/object"
         android:textSize="15dp"
         android:layout_width="wrap_content"
@@ -37,6 +23,17 @@
         android:layout_below="@+id/htView"
         android:layout_alignLeft="@+id/htView"
         android:layout_alignStart="@+id/htView" />
+
+    <TextView
+        android:text="@string/butt2"
+        android:textStyle="bold"
+        android:textSize="70px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/htView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
