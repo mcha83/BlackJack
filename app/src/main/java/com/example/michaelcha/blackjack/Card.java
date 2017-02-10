@@ -1,5 +1,7 @@
 package com.example.michaelcha.blackjack;
 
+import android.content.Context;
+
 import java.io.Serializable;
 
 /**
@@ -60,6 +62,31 @@ public class Card implements Serializable{
         }
 
         return num + " of " + this.suit;
+    }
+
+    // dynamically get the drawable id for the card
+    public int toImageId(Context context){
+        String num = this.number + "";
+        if(this.number < 10)
+            num = "0" + this.number;
+
+        String suit = "";
+        switch(this.suit){
+            case Spades:
+                suit = "s";
+                break;
+            case Hearts:
+                suit = "h";
+                break;
+            case Clubs:
+                suit = "c";
+                break;
+            case Diamonds:
+                suit = "d";
+                break;
+        }
+
+        return context.getResources().getIdentifier("drawable/" + suit + num, null, context.getPackageName());
     }
 
 }
