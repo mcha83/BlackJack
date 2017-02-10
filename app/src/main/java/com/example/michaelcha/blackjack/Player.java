@@ -87,6 +87,10 @@ public class Player implements Serializable {
         return handStr.substring(0, handStr.length() - 2);
     }
 
+    public ArrayList<Card> getHand(){
+        return this.hand;
+    }
+
     public int getMoney(){
         return this.money;
     }
